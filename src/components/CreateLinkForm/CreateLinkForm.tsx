@@ -24,7 +24,7 @@ const CreateLinkForm = () => {
           required
         />
         <div className="my-1 flex items-center">
-          <span className="mr-1 text-xs sm:text-base">
+          <span className="mr-1 break-all text-xs sm:text-base">
             {window.location.origin}/
           </span>
           <input
