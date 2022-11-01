@@ -8,15 +8,15 @@ const useUrlHistory = () => {
     numPerPage: 10,
     currentPage: 1,
   });
+  const [search, setSearch] = useState("");
 
   // TRPC
-  const [urlsQuery, [search, setSearch]] = useContext(
-    QueryContext
-  ) as QueryContextType;
+  const urlsQuery = useContext(QueryContext) as QueryContextType;
   const deleteMutation = trpc.shortUrl.deleteUrl.useMutation();
 
   // Pagination -- handle which urls are showing
-  const urls = urlsQuery.data?.slice().reverse() ?? [];
+  const urls =
+    urlsQuery.data?.filter((url) => url.slug.includes(search)).reverse() ?? [];
   const numPerPage = paginationParams.numPerPage || 1;
   const skip = numPerPage * (paginationParams.currentPage - 1);
   const urlsShowing = urls.slice(skip, skip + numPerPage);

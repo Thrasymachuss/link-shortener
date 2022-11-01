@@ -1,11 +1,8 @@
-import { createContext, Dispatch, SetStateAction } from "react";
+import { createContext } from "react";
 import { trpc } from "../utils/trpc";
 
-type UrlQueryType = ReturnType<
-  typeof trpc.shortUrl.getUrls.useQuery<"get.shortUrls">
+export type QueryContextType = ReturnType<
+  typeof trpc.shortUrl.getUrls.useQuery<void>
 >;
-type SearchType = [string, Dispatch<SetStateAction<string>>];
-export type QueryContextType = [UrlQueryType, SearchType];
-
 const QueryContext = createContext<QueryContextType | null>(null);
 export default QueryContext;

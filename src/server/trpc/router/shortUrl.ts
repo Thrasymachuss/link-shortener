@@ -3,21 +3,16 @@ import { z } from "zod";
 import { router, publicProcedure, protectedProcedure } from "../trpc";
 
 export const shortUrlRouter = router({
-  getUrls: protectedProcedure
-    .input(z.object({ search: z.string().nullish() }))
-    .query(async ({ ctx, input }) => {
-      const session = ctx.session;
-      const userId = session.user.id ?? "";
-      const shortUrls = await ctx.prisma.shortUrl.findMany({
-        where: {
-          userId,
-          slug: {
-            contains: input.search ?? "",
-          },
-        },
-      });
-      return shortUrls;
-    }),
+  getUrls: protectedProcedure.query(async ({ ctx }) => {
+    const session = ctx.session;
+    const userId = session.user.id ?? "";
+    const shortUrls = await ctx.prisma.shortUrl.findMany({
+      where: {
+        userId,
+      },
+    });
+    return shortUrls;
+  }),
   checkInUse: publicProcedure
     .input(z.object({ slug: z.string().nullish() }))
     .query(async ({ input, ctx }) => {

@@ -3,12 +3,12 @@ import { useState } from "react";
 import { trpc } from "../../utils/trpc";
 
 const useDashboard = () => {
-  const searchState = useState("");
+  // const searchState = useState("");
   useSession();
 
-  const urlsQuery = trpc.shortUrl.getUrls.useQuery({ search: searchState[0] });
+  const urlsQuery = trpc.shortUrl.getUrls.useQuery();
 
-  return { searchState, urlsQuery };
+  return urlsQuery;
 };
 
 export default useDashboard;

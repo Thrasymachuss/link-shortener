@@ -17,7 +17,7 @@ const useCreateLinkForm = () => {
     slug: formParams.slug,
   });
 
-  const [urlsQuery] = useContext(QueryContext) as QueryContextType;
+  const urlsQuery = useContext(QueryContext) as QueryContextType;
 
   // Event handlers
   const handleFormInput: ChangeEventHandler<HTMLInputElement> = (e) => {
