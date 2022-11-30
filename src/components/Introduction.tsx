@@ -31,16 +31,6 @@ const Introduction = () => {
             Get Started
           </button>
         </div>
-        <p className="pt-16 text-center">
-          Background courtesy of{" "}
-          <a
-            className="text-blue-300"
-            href="https://www.svgbackgrounds.com/"
-            target="blank"
-          >
-            SVG Backgrounds
-          </a>
-        </p>
       </div>
     </FadeIn>
   );
